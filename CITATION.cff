@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "vosa: Variance-Optimized Saliences Analysis for Multiblock Data"
+version: 1.0.0
+date-released: 2026-11-25
+license: MIT
+type: software
+authors:
+  - family-names: "Ballah Houssein"
+    given-names: "Saida"
+    affiliation: "StatSC (Oniris, INRAE), Oniris VetAgroBio Nantes, 44300 Nantes, France"
+  - family-names: "Galharret"
+    given-names: "Jean-Michel"
+    affiliation: "StatSC (Oniris, INRAE), Oniris VetAgroBio Nantes, 44300 Nantes, France"
+  - family-names: "Hanafi"
+    given-names: "Mohamed"
+    affiliation: "StatSC (Oniris, INRAE), Oniris VetAgroBio Nantes, 44300 Nantes, France"
+keywords:
+  - multiblock analysis
+  - saliences
+  - ComDim
+  - orthogonal INDSCAL
+  - chemometrics
+  - dimension reduction

@@ -1,0 +1,13 @@
+{
+  "title": "vosa: Variance-Optimized Saliences Analysis for Multiblock Data (R package)",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "R package implementing VOSA (variance-optimized saliences analysis) and the family of criteria g_alpha = (1 - alpha) level^2 + alpha contrast, which contains CPCA, INDORT (orthogonal INDSCAL, simultaneous ComDim) and VOSA, computed with the Shifted Polar Ascent algorithm; STATIS for comparison; outputs in the canonical factorization X_k = U D_k V_k' + E_k; diagnostics; and a script reproducing the results of the accompanying article.",
+  "creators": [
+    {"name": "Ballah Houssein, Saida", "affiliation": "StatSC (Oniris, INRAE), Oniris VetAgroBio Nantes, France"},
+    {"name": "Galharret, Jean-Michel", "affiliation": "StatSC (Oniris, INRAE), Oniris VetAgroBio Nantes, France"},
+    {"name": "Hanafi, Mohamed", "affiliation": "StatSC (Oniris, INRAE), Oniris VetAgroBio Nantes, France"}
+  ],
+  "keywords": ["multiblock analysis", "saliences", "ComDim", "orthogonal INDSCAL", "chemometrics", "R package"]
+}

@@ -1,0 +1,30 @@
+Package: vosa
+Type: Package
+Title: Variance-Optimized Saliences Analysis for Multiblock Data
+Version: 1.0.0
+Date: 2026-11-25
+Authors@R: c(
+    person("Saida", "Ballah Houssein", role = "aut"),
+    person("Jean-Michel", "Galharret", role = "aut"),
+    person("Mohamed", "Hanafi", role = c("aut", "cre"),
+           email = "mohamed.hanafi@oniris-nantes.fr"))
+Description: Exploratory multiblock dimension reduction based on block
+    saliences, the share of each block's inertia reproduced by a common
+    component. Implements the family of criteria
+    g_alpha = (1 - alpha) * level^2 + alpha * contrast, which contains CPCA
+    (alpha = 0), orthogonal INDSCAL / INDORT (alpha = 1/2, the simultaneous
+    version of ComDim / CCSWA) and VOSA (alpha = 1), the method that maximizes
+    the variance of the saliences of a component. All criteria are computed
+    with the Shifted Polar Ascent (SPA) algorithm, whose monotone ascent is
+    guaranteed for indefinite blocks. STATIS is provided for comparison.
+    Results can be returned in the canonical factorization
+    X_k = U D_k V_k' + E_k common to multiblock methods. Diagnostics include
+    the rho ratio, the relative bounds on the contrast gain, the heterogeneity
+    of block structures and the comparison with block principal components.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.1.0)
+Imports: stats, graphics, grDevices, utils
+Suggests: testthat (>= 3.0.0), R.matlab
+Config/testthat/edition: 3
+NeedsCompilation: no

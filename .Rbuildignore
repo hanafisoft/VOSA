@@ -1,0 +1,6 @@
+^\.zenodo\.json$
+^CITATION\.cff$
+^README\.md$
+^LISEZMOI\.md$
+^resultats$
+^\.gitignore$
