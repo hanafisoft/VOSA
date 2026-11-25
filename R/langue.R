@@ -115,7 +115,7 @@ traduire <- function(x, langue = vosa_langue()) {
   individu       = c(fr = "individu", en = "individual"),
   composante     = c(fr = "composante", en = "component"),
   variable       = c(fr = "variable", en = "variable"),
-  chargement     = c(fr = "chargement, dimension", en = "loading, dimension"),
+  chargement     = c(fr = "chargement, dim.", en = "loading, dim."),
   d2             = c(fr = "d_kr^2 (salience)", en = "d_kr^2 (salience)"),
   d              = c(fr = "d_kr", en = "d_kr"),
   score          = c(fr = "score x racine(n)", en = "score x sqrt(n)")

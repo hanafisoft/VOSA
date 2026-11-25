@@ -8,11 +8,20 @@
 \alias{plot.vosa_factorisation}
 \title{Plots of the canonical factorization: components U, diagonal terms D_k and loadings V_k}
 \usage{
-plot_U(x, dims = c(1, 2), groupes = NULL, etiquettes = FALSE, main = NULL, ...)
+plot_U(x, dims = c(1, 2), groupes = NULL, etiquettes = NULL, main = NULL, ...)
 
 plot_D(x, carre = TRUE, main = NULL, ...)
 
-plot_V(x, bloc = 1, dims = 1, axe = NULL, etiquettes = NULL, main = NULL, ...)
+plot_V(
+  x,
+  bloc = 1,
+  dims = 1,
+  axe = NULL,
+  etiquettes = NULL,
+  n_etiquettes = 10,
+  main = NULL,
+  ...
+)
 
 \method{plot}{vosa_factorisation}(x, type = c("D", "U", "V"), ...)
 }
@@ -23,7 +32,9 @@ plot_V(x, bloc = 1, dims = 1, axe = NULL, etiquettes = NULL, main = NULL, ...)
 
 \item{groupes}{optional factor (one value per individual) used to colour the individuals.}
 
-\item{etiquettes}{logical; write the names (or numbers) of the individuals or of the variables. For \code{plot_V}, by default, the labels are written when the block has at most 40 variables.}
+\item{etiquettes}{logical; write the names (or numbers) of the individuals (by default when \eqn{n \le 50}) or of the variables (by default; when the block has more than 40 variables, only the \code{n_etiquettes} variables with the largest loadings are labelled).}
+
+\item{n_etiquettes}{number of variables labelled in \code{plot_V} when the block has more than 40 variables.}
 
 \item{carre}{logical; plot \eqn{d_{kr}^2} (the saliences) rather than \eqn{d_{kr}}.}
 

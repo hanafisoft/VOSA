@@ -18,8 +18,12 @@
 #'   \code{plot_D}, an object of class \code{"vosa_fit"}.
 #' @param dims one or two dimensions to plot.
 #' @param groupes optional factor (length \eqn{n}) used to colour the individuals.
-#' @param etiquettes logical; write the names (or numbers) of the individuals or
-#'   of the variables.
+#' @param etiquettes logical; write the names (or numbers) of the individuals
+#'   (by default when \eqn{n \le 50}) or of the variables (by default; when the
+#'   block has more than 40 variables, only the \code{n_etiquettes} variables with
+#'   the largest loadings are labelled).
+#' @param n_etiquettes number of variables labelled in \code{plot_V} when the
+#'   block has more than 40 variables.
 #' @param carre logical; plot \eqn{d_{kr}^2} (saliences) rather than \eqn{d_{kr}}.
 #' @param bloc block whose loadings are plotted (number or name).
 #' @param axe optional numeric abscissa for the variables of the block (e.g.
@@ -44,11 +48,14 @@ NULL
 
 #' @rdname graphiques-factorisation
 #' @export
-plot_U <- function(x, dims = c(1, 2), groupes = NULL, etiquettes = FALSE, main = NULL, ...) {
+plot_U <- function(x, dims = c(1, 2), groupes = NULL, etiquettes = NULL, main = NULL, ...) {
   U <- x$U
+  op <- .marges()
+  on.exit(graphics::par(op))
   if (max(dims) > ncol(U)) stop("dims exceeds the number of components.")
   n <- nrow(U)
   noms <- if (is.null(rownames(U))) as.character(seq_len(n)) else rownames(U)
+  if (is.null(etiquettes)) etiquettes <- n <= 50
   if (is.null(groupes)) {
     col <- rep("grey20", n)
   } else {
@@ -63,7 +70,7 @@ plot_U <- function(x, dims = c(1, 2), groupes = NULL, etiquettes = FALSE, main =
     plot(seq_len(n), s, pch = 19, col = col, xlab = .tr("individu"),
          ylab = paste(.tr("composante"), dims), main = titre, ...)
     graphics::abline(h = 0, lty = 3)
-    if (etiquettes) graphics::text(seq_len(n), s, noms, pos = 3, cex = 0.7)
+    if (etiquettes) graphics::text(seq_len(n), s, noms, pos = 3, cex = 0.6, col = col)
     out <- s
   } else {
     s <- U[, dims[1:2], drop = FALSE]
@@ -71,13 +78,13 @@ plot_U <- function(x, dims = c(1, 2), groupes = NULL, etiquettes = FALSE, main =
          xlab = paste(.tr("composante"), dims[1]), ylab = paste(.tr("composante"), dims[2]),
          main = titre, ...)
     graphics::abline(h = 0, v = 0, lty = 3)
-    if (etiquettes) graphics::text(s[, 1], s[, 2], noms, pos = 3, cex = 0.7)
+    if (etiquettes) graphics::text(s[, 1], s[, 2], noms, pos = 3, cex = 0.6, col = col)
     out <- s
   }
   if (!is.null(groupes))
     graphics::legend("topright", levels(groupes), pch = 19,
                      col = grDevices::hcl.colors(max(2, nlevels(groupes)), "Dark 3")[seq_len(nlevels(groupes))],
-                     bty = "n", cex = 0.8)
+                     bty = "n", cex = 1)
   invisible(out)
 }
 
@@ -87,25 +94,30 @@ plot_D <- function(x, carre = TRUE, main = NULL, ...) {
   if (is.null(main)) main <- if (!is.null(x$methode)) x$methode else ""
   D <- if (inherits(x, "vosa_fit")) sqrt(pmax(x$saliences, 0)) else x$D
   M <- if (carre) D^2 else D
+  op <- .marges(rownames(M))
+  on.exit(graphics::par(op))
   pal <- grDevices::hcl.colors(max(2, ncol(M)), "Blues 3")[seq_len(ncol(M))]
-  graphics::barplot(t(M), beside = TRUE, col = pal, las = 2,
+  graphics::barplot(t(M), beside = TRUE, col = pal, las = 2, ylim = c(0, max(M) * 1.15),
                     ylab = if (carre) .tr("d2") else .tr("d"),
                     main = main, ...)
-  graphics::legend("topright", colnames(M), fill = pal, bty = "n", cex = 0.8)
+  graphics::legend("topright", colnames(M), fill = pal, bty = "n", cex = 0.9)
   invisible(M)
 }
 
 #' @rdname graphiques-factorisation
 #' @export
-plot_V <- function(x, bloc = 1, dims = 1, axe = NULL, etiquettes = NULL, main = NULL, ...) {
+plot_V <- function(x, bloc = 1, dims = 1, axe = NULL, etiquettes = NULL, n_etiquettes = 10,
+                   main = NULL, ...) {
   if (!inherits(x, "vosa_factorisation"))
     stop("x must be an object of class 'vosa_factorisation' (see factorisation_canonique).")
   Vk <- x$V[[bloc]]
   nom_bloc <- if (is.character(bloc)) bloc else names(x$V)[bloc]
   p <- nrow(Vk)
   noms <- if (is.null(rownames(Vk))) as.character(seq_len(p)) else rownames(Vk)
-  if (is.null(etiquettes)) etiquettes <- p <= 40
+  if (is.null(etiquettes)) etiquettes <- TRUE
   if (is.null(main)) main <- paste(nom_bloc, "-", x$methode)
+  op <- .marges()
+  on.exit(graphics::par(op))
   if (length(dims) == 1) {
     v <- Vk[, dims]
     ab <- if (is.null(axe)) seq_len(p) else axe
@@ -114,7 +126,10 @@ plot_V <- function(x, bloc = 1, dims = 1, axe = NULL, etiquettes = NULL, main = 
          xlab = if (is.null(axe)) .tr("variable") else "", ylab = paste(.tr("chargement"), dims),
          main = main, ...)
     graphics::abline(h = 0, lty = 3)
-    if (etiquettes && p <= 40) graphics::text(ab, v, noms, pos = ifelse(v >= 0, 3, 1), cex = 0.7)
+    if (etiquettes) {
+      k <- if (p <= 40) seq_len(p) else order(abs(v), decreasing = TRUE)[seq_len(min(n_etiquettes, p))]
+      graphics::text(ab[k], v[k], noms[k], pos = ifelse(v[k] >= 0, 3, 1), cex = 0.7, xpd = TRUE)
+    }
     out <- v
   } else {
     v <- Vk[, dims[1:2], drop = FALSE]
@@ -123,7 +138,11 @@ plot_V <- function(x, bloc = 1, dims = 1, axe = NULL, etiquettes = NULL, main = 
          xlab = paste(.tr("chargement"), dims[1]), ylab = paste(.tr("chargement"), dims[2]),
          main = main, ...)
     graphics::abline(h = 0, v = 0, lty = 3)
-    if (etiquettes) graphics::text(v[, 1], v[, 2], noms, pos = 3, cex = 0.7)
+    if (etiquettes) {
+      k <- if (p <= 40) seq_len(p) else
+        order(rowSums(v^2), decreasing = TRUE)[seq_len(min(n_etiquettes, p))]
+      graphics::text(v[k, 1], v[k, 2], noms[k], pos = 3, cex = 0.7)
+    }
     out <- v
   }
   invisible(out)

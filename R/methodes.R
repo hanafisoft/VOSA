@@ -45,13 +45,15 @@ summary.vosa_fit <- function(object, ...) {
 plot.vosa_fit <- function(x, dim = 1, main = NULL, ...) {
   if (is.null(main)) main <- paste(x$methode, "-", .tr("dimension"), dim)
   a <- x$saliences[, dim]
-  pos <- graphics::barplot(a, ylim = c(0, max(c(a, x$plafonds)) * 1.1),
+  op <- .marges(names(a))
+  on.exit(graphics::par(op))
+  pos <- graphics::barplot(a, ylim = c(0, max(c(a, x$plafonds)) * 1.3),
                            ylab = .tr("salience"), las = 2,
                            main = main, ...)
   graphics::points(pos, x$plafonds, pch = 25, bg = "grey40")
   graphics::abline(h = mean(a), lty = 2)
-  graphics::legend("topright", c(.tr("plafond"), .tr("niveau")), pch = c(25, NA), lty = c(NA, 2),
-                   pt.bg = "grey40", bty = "n")
+  graphics::legend("top", c(.tr("plafond"), .tr("niveau")), pch = c(25, NA), lty = c(NA, 2),
+                   pt.bg = "grey40", bty = "n", horiz = TRUE, cex = 0.9)
   invisible(x)
 }
 
@@ -91,10 +93,13 @@ plot_niveau_contraste <- function(fits, ...) {
   tab <- data.frame(methode = names(fits),
                     niveau2 = vapply(fits, function(f) mean(f$resume$niveau2), 0),
                     contraste = vapply(fits, function(f) mean(f$resume$contraste), 0))
+  op <- .marges()
+  on.exit(graphics::par(op))
   plot(tab$niveau2, tab$contraste, pch = 19, xlab = .tr("niveau2"),
-       ylab = .tr("contraste"), xlim = c(0, max(tab$niveau2) * 1.15),
-       ylim = c(0, max(tab$contraste) * 1.15), ...)
-  graphics::text(tab$niveau2, tab$contraste, tab$methode, pos = 3, cex = 0.8)
+       ylab = .tr("contraste"), xlim = c(0, max(tab$niveau2) * 1.3),
+       ylim = c(0, max(tab$contraste) * 1.25), ...)
+  e <- .fusion_etiquettes(tab$niveau2, tab$contraste, tab$methode)
+  graphics::text(e$x, e$y, e$noms, pos = 3, cex = 0.85)
   invisible(tab)
 }
 
@@ -105,6 +110,8 @@ plot_niveau_contraste <- function(fits, ...) {
 #' @return \code{b}, invisibly.
 #' @export
 plot_borne_relative <- function(b, ...) {
+  op <- .marges()
+  on.exit(graphics::par(op))
   plot(b$alpha, b$delta_contraste, type = "n", xlab = expression(alpha),
        ylab = expression(delta[V]), ylim = range(c(0, b$borne_sup, b$delta_contraste)), ...)
   graphics::polygon(c(b$alpha, rev(b$alpha)), c(b$borne_inf, rev(b$borne_sup)),

@@ -80,3 +80,26 @@
   class(lst) <- "vosa_fit"
   lst
 }
+
+## Margins large enough for the axis titles (left) and for vertical block names
+## (bottom); returns the previous settings, to be restored with on.exit().
+.marges <- function(noms = NULL) {
+  m <- graphics::par("mar")
+  m[2] <- max(m[2], 5.1)
+  if (!is.null(noms)) m[1] <- max(m[1], 1.5 + 0.55 * max(nchar(noms), 1))
+  graphics::par(mar = m)
+}
+
+## Merge the labels of points that (almost) coincide, so that they do not overlap
+.fusion_etiquettes <- function(x, y, noms, tol = 0.04) {
+  rx <- diff(range(c(0, x))); ry <- diff(range(c(0, y)))
+  if (rx == 0) rx <- 1
+  if (ry == 0) ry <- 1
+  groupe <- seq_along(x)
+  for (i in seq_along(x)) for (j in seq_len(i - 1))
+    if (abs(x[i] - x[j]) / rx < tol && abs(y[i] - y[j]) / ry < tol) groupe[i] <- groupe[j]
+  g <- unique(groupe)
+  list(x = vapply(g, function(k) mean(x[groupe == k]), 0),
+       y = vapply(g, function(k) mean(y[groupe == k]), 0),
+       noms = vapply(g, function(k) paste(noms[groupe == k], collapse = " / "), ""))
+}
