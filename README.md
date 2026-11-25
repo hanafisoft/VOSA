@@ -21,6 +21,14 @@ install.packages("vosa_1.0.0.tar.gz", repos = NULL, type = "source")
 
 Source code: https://github.com/hanafisoft/VOSA (issues: https://github.com/hanafisoft/VOSA/issues).
 
+### Python
+
+A Python version with the same functions and outputs is in the folder [`python/`](python):
+
+```bash
+pip install "git+https://github.com/hanafisoft/VOSA#subdirectory=python"
+```
+
 ## Example
 
 ```r

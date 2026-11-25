@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vosa"
+version = "1.0.0"
+description = "Variance-Optimized Saliences Analysis for multiblock data (CPCA, INDORT, VOSA, SPA algorithm, STATIS, canonical factorization)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+  {name = "Saida Ballah Houssein"},
+  {name = "Jean-Michel Galharret"},
+  {name = "Mohamed Hanafi", email = "mohamed.hanafi@oniris-nantes.fr"},
+]
+keywords = ["multiblock analysis", "saliences", "ComDim", "orthogonal INDSCAL", "chemometrics"]
+dependencies = ["numpy>=1.21", "pandas>=1.3", "matplotlib>=3.4"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+donnees = ["scipy>=1.7"]
+
+[project.urls]
+Homepage = "https://github.com/hanafisoft/VOSA"
+Issues = "https://github.com/hanafisoft/VOSA/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]

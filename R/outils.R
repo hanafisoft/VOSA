@@ -91,7 +91,7 @@
 }
 
 ## Merge the labels of points that (almost) coincide, so that they do not overlap
-.fusion_etiquettes <- function(x, y, noms, tol = 0.04) {
+.fusion_etiquettes <- function(x, y, noms, tol = 0.06) {
   rx <- diff(range(c(0, x))); ry <- diff(range(c(0, y)))
   if (rx == 0) rx <- 1
   if (ry == 0) ry <- 1

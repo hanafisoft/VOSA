@@ -96,10 +96,10 @@ plot_niveau_contraste <- function(fits, ...) {
   op <- .marges()
   on.exit(graphics::par(op))
   plot(tab$niveau2, tab$contraste, pch = 19, xlab = .tr("niveau2"),
-       ylab = .tr("contraste"), xlim = c(0, max(tab$niveau2) * 1.3),
+       ylab = .tr("contraste"), xlim = c(0, max(tab$niveau2) * 1.45),
        ylim = c(0, max(tab$contraste) * 1.25), ...)
   e <- .fusion_etiquettes(tab$niveau2, tab$contraste, tab$methode)
-  graphics::text(e$x, e$y, e$noms, pos = 3, cex = 0.85)
+  graphics::text(e$x, e$y, e$noms, pos = 4, cex = 0.85, xpd = TRUE)
   invisible(tab)
 }
 

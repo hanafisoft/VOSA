@@ -4,3 +4,9 @@
 *.Rcheck/
 *.tar.gz
 resultats/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+resultats_python/
+build/
+dist/

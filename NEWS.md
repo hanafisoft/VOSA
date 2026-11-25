@@ -7,3 +7,4 @@
 * Simulation generator `simuler_blocs()`; reproduction script in `inst/scripts/reproduire_article.R`.
 * Results in French or English: `vosa_langue("fr")` / `vosa_langue("en")` (option `vosa.langue`, French by default) sets the language of printed output, plot labels and tables; `traduire()` returns a copy of an object or table with English or French names, for export. Element names of the objects stay in French, so scripts work in both languages.
 * Plots: margins wide enough for axis titles and block names, labels of individuals (n <= 50) and of the variables with the largest loadings (`n_etiquettes`), labels of coinciding methods merged in `plot_niveau_contraste()` (e.g. "CPCA / STATIS").
+* Python version of the package in `python/` (same functions and outputs; `pip install "git+https://github.com/hanafisoft/VOSA#subdirectory=python"`), with its tests and a script reproducing the results of the article.
