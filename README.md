@@ -11,9 +11,15 @@ contains CPCA (alpha = 0), INDORT / orthogonal INDSCAL (alpha = 1/2, simultaneou
 ## Installation
 
 ```r
-# from the source archive
+# from GitHub
+# install.packages("remotes")
+remotes::install_github("hanafisoft/VOSA")
+
+# or from the source archive
 install.packages("vosa_1.0.0.tar.gz", repos = NULL, type = "source")
 ```
+
+Source code: https://github.com/hanafisoft/VOSA (issues: https://github.com/hanafisoft/VOSA/issues).
 
 ## Example
 
@@ -65,7 +71,7 @@ The script lists the data files needed and writes all tables, figures and canoni
 
 ## Citation
 
-See `citation("vosa")` (DOI: 10.5281/zenodo.XXXXXXX).
+See `citation("vosa")`. The DOI of the archived version (Zenodo) will be added here.
 
 ## License
 

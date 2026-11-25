@@ -5,8 +5,8 @@ bibentry(
              person("Mohamed", "Hanafi")),
   year = "2026",
   note = "R package version 1.0.0",
-  doi = "10.5281/zenodo.XXXXXXX",
+  url = "https://github.com/hanafisoft/VOSA",
   textVersion = paste("Ballah Houssein, S., Galharret, J.-M. and Hanafi, M. (2026).",
                       "vosa: Variance-Optimized Saliences Analysis for Multiblock Data.",
-                      "R package version 1.0.0. doi:10.5281/zenodo.XXXXXXX")
+                      "R package version 1.0.0. https://github.com/hanafisoft/VOSA")
 )

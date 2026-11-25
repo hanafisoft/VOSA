@@ -5,6 +5,8 @@ version: 1.0.0
 date-released: 2026-11-25
 license: MIT
 type: software
+repository-code: "https://github.com/hanafisoft/VOSA"
+url: "https://github.com/hanafisoft/VOSA"
 authors:
   - family-names: "Ballah Houssein"
     given-names: "Saida"

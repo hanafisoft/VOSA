@@ -9,5 +9,6 @@
     {"name": "Galharret, Jean-Michel", "affiliation": "StatSC (Oniris, INRAE), Oniris VetAgroBio Nantes, France"},
     {"name": "Hanafi, Mohamed", "affiliation": "StatSC (Oniris, INRAE), Oniris VetAgroBio Nantes, France"}
   ],
+  "related_identifiers": [{"identifier": "https://github.com/hanafisoft/VOSA", "relation": "isSupplementTo", "scheme": "url"}],
   "keywords": ["multiblock analysis", "saliences", "ComDim", "orthogonal INDSCAL", "chemometrics", "R package"]
 }

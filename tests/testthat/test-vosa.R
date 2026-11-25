@@ -89,7 +89,7 @@ test_that("language of the results", {
   expect_equal(vosa_langue(), "en")
   expect_output(print(fit), "Level and contrast")
   tr <- traduire(fit)
-  expect_true(all(c("method", "summary", "criterion") %in% names(tr)))
+  expect_true(all(c("method", "summary", "converged") %in% names(tr)))
   expect_true("contrast" %in% names(traduire(fit$resume)))
   expect_equal(tr$saliences, fit$saliences)
   expect_error(vosa_langue("de"))

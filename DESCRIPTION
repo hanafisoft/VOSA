@@ -21,10 +21,12 @@ Description: Exploratory multiblock dimension reduction based on block
     X_k = U D_k V_k' + E_k common to multiblock methods. Diagnostics include
     the rho ratio, the relative bounds on the contrast gain, the heterogeneity
     of block structures and the comparison with block principal components.
+URL: https://github.com/hanafisoft/VOSA
+BugReports: https://github.com/hanafisoft/VOSA/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 4.1.0)
-Imports: stats, graphics, grDevices, utils
+Imports: stats, graphics, grDevices
 Suggests: testthat (>= 3.0.0), R.matlab
 Config/testthat/edition: 3
 NeedsCompilation: no
