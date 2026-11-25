@@ -25,7 +25,7 @@ from .preparation import bloc_W, blocs_vers_S
 from .resultats import VosaChemin, VosaFactorisation, VosaFit
 from .simulation import simuler_blocs
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 __all__ = [
     "blocs_vers_S", "bloc_W", "cpca", "indort", "spa", "vosa", "chemin_spa", "statis",

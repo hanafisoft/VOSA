@@ -1,3 +1,7 @@
+# vosa 1.0.1
+
+* DOI of the archived version 1.0.0 (Zenodo): 10.5281/zenodo.24531478, added to the citation (`citation("vosa")`, `CITATION.cff`) and to the READMEs.
+
 # vosa 1.0.0
 
 * First release, accompanying the article "VOSA : analyse des saliences à variance optimisée dans le modèle INDSCAL".

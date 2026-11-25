@@ -1,5 +1,7 @@
 # vosa — Variance-Optimized Saliences Analysis for multiblock data
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24531478.svg)](https://doi.org/10.5281/zenodo.24531478)
+
 R package accompanying the article *VOSA : analyse des saliences à variance optimisée dans le modèle INDSCAL* (Ballah Houssein, Galharret and Hanafi, 2026).
 
 Multiblock components are described by their **saliences**, the share of each block's inertia they reproduce. The family
@@ -79,7 +81,11 @@ The script lists the data files needed and writes all tables, figures and canoni
 
 ## Citation
 
-See `citation("vosa")`. The DOI of the archived version (Zenodo) will be added here.
+Please cite:
+
+Ballah Houssein, S., Galharret, J.-M. and Hanafi, M. (2026). vosa: Variance-Optimized Saliences Analysis for Multiblock Data. R and Python packages, version 1.0.0. https://github.com/hanafisoft/VOSA. doi:[10.5281/zenodo.24531478](https://doi.org/10.5281/zenodo.24531478)
+
+In R: `citation("vosa")`.
 
 ## License
 

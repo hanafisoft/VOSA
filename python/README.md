@@ -1,5 +1,7 @@
 # vosa (Python) — Variance-Optimized Saliences Analysis for multiblock data
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24531478.svg)](https://doi.org/10.5281/zenodo.24531478)
+
 Python version of the R package `vosa` (same repository), accompanying the article *VOSA : analyse des saliences à variance optimisée dans le modèle INDSCAL* (Ballah Houssein, Galharret and Hanafi, 2026). Same functions, same arguments and same outputs as the R package.
 
 Multiblock components are described by their **saliences**, the share of each block's inertia they reproduce. The family
@@ -78,6 +80,10 @@ The data files and their sources are listed at the top of the script. The tables
 pip install -e ".[test]"
 pytest tests
 ```
+
+## Citation
+
+Ballah Houssein, S., Galharret, J.-M. and Hanafi, M. (2026). vosa: Variance-Optimized Saliences Analysis for Multiblock Data. R and Python packages, version 1.0.0. https://github.com/hanafisoft/VOSA. doi:[10.5281/zenodo.24531478](https://doi.org/10.5281/zenodo.24531478)
 
 ## License
 

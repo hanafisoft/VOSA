@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vosa"
-version = "1.0.0"
+version = "1.0.1"
 description = "Variance-Optimized Saliences Analysis for multiblock data (CPCA, INDORT, VOSA, SPA algorithm, STATIS, canonical factorization)"
 readme = "README.md"
 requires-python = ">=3.9"
